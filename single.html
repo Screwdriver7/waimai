@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>单品测算</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Roboto', '微软雅黑', Arial, sans-serif;
+      background: linear-gradient(135deg, #fffbe6 0%, #f7f7f7 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 32px 0 0 40px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 10;
+    }
+    .header img {
+      max-width: 150px;
+      max-height: 100px;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(212,175,55,0.10);
+      padding: 6px;
+      border: 1.5px solid #e6d8b6;
+    }
+    .back-btn {
+      position: absolute;
+      right: 40px;
+      top: 40px;
+      background: #fffbe6;
+      color: #bfa046;
+      border: 1.5px solid #e6d8b6;
+      border-radius: 8px;
+      padding: 10px 24px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      box-shadow: 0 2px 8px rgba(212,175,55,0.08);
+    }
+    .back-btn:hover {
+      background: #bfa046;
+      color: #fff;
+    }
+    .container {
+      background: rgba(255,255,255,0.98);
+      border-radius: 18px;
+      box-shadow: 0 6px 32px 0 rgba(212,175,55,0.10), 0 1.5px 6px 0 rgba(212,175,55,0.06);
+      padding: 44px 34px 32px 34px;
+      max-width: 480px;
+      width: 100%;
+      margin: 120px auto 0 auto;
+      position: relative;
+    }
+    h2 {
+      text-align: center;
+      color: #bfa046;
+      margin-bottom: 28px;
+      letter-spacing: 2px;
+      font-weight: 700;
+      font-size: 1.7rem;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: #bfa046;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid #e6d8b6;
+      border-radius: 7px;
+      font-size: 17px;
+      box-sizing: border-box;
+      background: #fdfcf7;
+      transition: border 0.2s;
+      color: #bfa046;
+    }
+    input[type="number"]:focus {
+      border: 1.5px solid #bfa046;
+      outline: none;
+      background: #fffbe6;
+    }
+    button {
+      width: 100%;
+      background: linear-gradient(90deg, #e6d8b6 0%, #bfa046 100%);
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      padding: 13px 0;
+      font-size: 19px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      margin-top: 10px;
+      box-shadow: 0 2px 8px rgba(212,175,55,0.08);
+      letter-spacing: 1px;
+    }
+    button:hover {
+      background: linear-gradient(90deg, #bfa046 0%, #e6d8b6 100%);
+      box-shadow: 0 4px 16px rgba(212,175,55,0.13);
+    }
+    .result {
+      margin-top: 28px;
+      background: linear-gradient(90deg, #fffbe6 0%, #f7f7f7 100%);
+      border-radius: 10px;
+      padding: 20px 16px;
+      color: #bfa046;
+      font-size: 17px;
+      line-height: 1.8;
+      border: 1.2px solid #e6d8b6;
+      box-shadow: 0 1.5px 6px 0 rgba(212,175,55,0.06);
+    }
+    .suggestion {
+      color: #d7263d;
+      font-weight: bold;
+      margin-top: 12px;
+      letter-spacing: 1px;
+    }
+    @media (max-width: 600px) {
+      .container {
+        margin: 90px 8px 0 8px;
+        padding: 28px 8px 18px 8px;
+        max-width: 98vw;
+      }
+      .header {
+        padding: 18px 0 0 10px;
+      }
+      .header img {
+        max-width: 60px;
+        max-height: 40px;
+      }
+      .back-btn {
+        right: 10px;
+        top: 10px;
+        padding: 8px 12px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img id="logo-img" src="pic.jpg" alt="logo" />
+  </div>
+  <div class="container">
+    <h2>单品测算</h2>
+    <div class="form-group">
+      <label for="sp_price">商品标价 (元)</label>
+      <input type="number" id="sp_price" min="0" step="1" placeholder="请输入商品标价">
+    </div>
+    <div class="form-group">
+      <label for="sp_base">底线价 (元)</label>
+      <input type="number" id="sp_base" min="0" step="1" placeholder="请输入底线价">
+    </div>
+    <div class="form-group">
+      <label for="sp_package">打包费 (元)</label>
+      <input type="number" id="sp_package" min="0" step="1" value="1">
+    </div>
+    <div class="form-group">
+      <label for="sp_coupon">神券活动补贴 (元)</label>
+      <input type="number" id="sp_coupon" min="0" step="1" placeholder="请输入神券补贴">
+    </div>
+    <div class="form-group">
+      <label for="sp_delivery">配送费活动补贴 (元)</label>
+      <input type="number" id="sp_delivery" min="0" step="1" placeholder="请输入配送补贴">
+    </div>
+    <div class="form-group">
+      <label for="sp_commission">佣金率 (%)</label>
+      <input type="number" id="sp_commission" min="0" max="100" step="1" value="20">
+    </div>
+    <button onclick="singleCalc()">测算</button>
+    <div class="result" id="sp_result" style="display:none;"></div>
+  </div>
+  <div style="height:32px;"></div>
+  <div class="footer-btn-wrap" style="width:100%;display:flex;justify-content:center;align-items:center;margin:40px 0 24px 0;">
+    <button class="back-btn" style="position:static;right:auto;top:auto;box-shadow:none;min-width:180px;" onclick="location.href='index.html'">返回首页</button>
+  </div>
+  <script>
+    function singleCalc() {
+      const x1 = parseFloat(document.getElementById('sp_price').value);
+      const y = parseFloat(document.getElementById('sp_base').value);
+      const x2 = parseFloat(document.getElementById('sp_package').value) || 1;
+      const x3 = parseFloat(document.getElementById('sp_coupon').value) || 0;
+      const x4 = parseFloat(document.getElementById('sp_delivery').value) || 0;
+      const commission = parseFloat(document.getElementById('sp_commission').value) || 20;
+      const resultDiv = document.getElementById('sp_result');
+      resultDiv.style.display = 'block';
+      if (isNaN(x1) || isNaN(y)) {
+        resultDiv.innerHTML = '<span class="suggestion">请填写商品标价和底线价！</span>';
+        return;
+      }
+      const discountAmount = x1 + x2 - x3 - x4;
+      const income = discountAmount * (1 - commission / 100);
+      let html = `商品优惠后金额：<b>${discountAmount.toFixed(2)}</b> 元<br>商家实际到手收入：<b>${income.toFixed(2)}</b> 元`;
+      if (income < y) {
+        const suggest = (y / (1 - commission / 100)) + x3 + x4 - x2;
+        html += `<div class="suggestion">⚠️ 收入低于底线价，请将商品标价调整为 <b>${suggest.toFixed(2)}</b> 元以上！</div>`;
+      } else {
+        html += '<div style="color:#2ecc40;font-weight:bold;margin-top:10px;">✅ 收入高于底线价，定价合理。</div>';
+      }
+      resultDiv.innerHTML = html;
+    }
+  </script>
+</body>
+</html> 

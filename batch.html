@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>整体建议</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Roboto', '微软雅黑', Arial, sans-serif;
+      background: linear-gradient(135deg, #fffbe6 0%, #f7f7f7 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 32px 0 0 40px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 10;
+    }
+    .header img {
+      max-width: 150px;
+      max-height: 100px;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(212,175,55,0.10);
+      padding: 6px;
+      border: 1.5px solid #e6d8b6;
+    }
+    .back-btn {
+      position: absolute;
+      right: 40px;
+      top: 40px;
+      background: #fffbe6;
+      color: #bfa046;
+      border: 1.5px solid #e6d8b6;
+      border-radius: 8px;
+      padding: 10px 24px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      box-shadow: 0 2px 8px rgba(212,175,55,0.08);
+    }
+    .back-btn:hover {
+      background: #bfa046;
+      color: #fff;
+    }
+    .container {
+      background: rgba(255,255,255,0.98);
+      border-radius: 18px;
+      box-shadow: 0 6px 32px 0 rgba(212,175,55,0.10), 0 1.5px 6px 0 rgba(212,175,55,0.06);
+      padding: 44px 34px 32px 34px;
+      max-width: 700px;
+      width: 100%;
+      margin: 120px auto 0 auto;
+      position: relative;
+    }
+    h2 {
+      text-align: center;
+      color: #bfa046;
+      margin-bottom: 28px;
+      letter-spacing: 2px;
+      font-weight: 700;
+      font-size: 1.7rem;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: #bfa046;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    input[type="number"], select, input[type="file"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid #e6d8b6;
+      border-radius: 7px;
+      font-size: 17px;
+      box-sizing: border-box;
+      background: #fdfcf7;
+      transition: border 0.2s;
+      color: #bfa046;
+    }
+    input[type="number"]:focus, select:focus, input[type="file"]:focus {
+      border: 1.5px solid #bfa046;
+      outline: none;
+      background: #fffbe6;
+    }
+    button {
+      width: 100%;
+      background: linear-gradient(90deg, #e6d8b6 0%, #bfa046 100%);
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      padding: 13px 0;
+      font-size: 19px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      margin-top: 10px;
+      box-shadow: 0 2px 8px rgba(212,175,55,0.08);
+      letter-spacing: 1px;
+    }
+    button:hover {
+      background: linear-gradient(90deg, #bfa046 0%, #e6d8b6 100%);
+      box-shadow: 0 4px 16px rgba(212,175,55,0.13);
+    }
+    .result {
+      margin-top: 28px;
+      background: linear-gradient(90deg, #fffbe6 0%, #f7f7f7 100%);
+      border-radius: 10px;
+      padding: 20px 16px;
+      color: #bfa046;
+      font-size: 17px;
+      line-height: 1.8;
+      border: 1.2px solid #e6d8b6;
+      box-shadow: 0 1.5px 6px 0 rgba(212,175,55,0.06);
+    }
+    .suggestion {
+      color: #d7263d;
+      font-weight: bold;
+      margin-top: 12px;
+      letter-spacing: 1px;
+    }
+    #table_wrap table {
+      width:100%;
+      border-collapse:collapse;
+      text-align:center;
+      font-size:15px;
+      background:#fffbe6;
+      border-radius:8px;
+      overflow:hidden;
+      box-shadow:0 1.5px 6px 0 rgba(212,175,55,0.06);
+    }
+    #table_wrap th, #table_wrap td {
+      border: 1px solid #e6d8b6;
+      padding: 8px 4px;
+    }
+    #table_wrap th {
+      background:#f7e7b7;
+      color: #bfa046;
+    }
+    @media (max-width: 800px) {
+      .container {
+        margin: 90px 8px 0 8px;
+        padding: 28px 8px 18px 8px;
+        max-width: 98vw;
+      }
+      .header {
+        padding: 18px 0 0 10px;
+      }
+      .header img {
+        max-width: 60px;
+        max-height: 40px;
+      }
+      .back-btn {
+        right: 10px;
+        top: 10px;
+        padding: 8px 12px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img id="logo-img" src="pic.jpg" alt="logo" />
+  </div>
+  <div class="container">
+    <h2>整体建议</h2>
+    <div class="form-group">
+      <label for="shop_select">选择店铺</label>
+      <select id="shop_select">
+        <option value="maxiangxing">马祥兴</option>
+        <option value="yonghe">永和园</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="excel_file">上传店铺商品Excel（需包含“商品名称”“价格底线”）</label>
+      <input type="file" id="excel_file" accept=".xlsx,.xls">
+    </div>
+    <div class="form-group">
+      <label for="all_package">打包费 (元)</label>
+      <input type="number" id="all_package" min="0" step="1" value="1">
+    </div>
+    <div class="form-group">
+      <label for="all_coupon">神券活动补贴 (元)</label>
+      <input type="number" id="all_coupon" min="0" step="1" value="0">
+    </div>
+    <div class="form-group">
+      <label for="all_delivery">配送费活动补贴 (元)</label>
+      <input type="number" id="all_delivery" min="0" step="1" value="0">
+    </div>
+    <div class="form-group">
+      <label for="all_commission">佣金率 (%)</label>
+      <input type="number" id="all_commission" min="0" max="100" step="1" value="20">
+    </div>
+    <button onclick="batchCalc()">批量测算</button>
+    <div class="result" id="batch_result" style="display:none;"></div>
+    <div id="table_wrap" style="margin-top:18px;"></div>
+  </div>
+  <div style="height:32px;"></div>
+  <div class="footer-btn-wrap" style="width:100%;display:flex;justify-content:center;align-items:center;margin:40px 0 24px 0;">
+    <button class="back-btn" style="position:static;right:auto;top:auto;box-shadow:none;min-width:180px;" onclick="location.href='index.html'">返回首页</button>
+  </div>
+  <script>
+    let excelData = [];
+    document.getElementById('excel_file').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const data = evt.target.result;
+        const workbook = XLSX.read(data, {type: 'binary'});
+        const sheet = workbook.Sheets[workbook.SheetNames[0]];
+        const json = XLSX.utils.sheet_to_json(sheet);
+        excelData = json;
+      };
+      reader.readAsBinaryString(file);
+    });
+    function batchCalc() {
+      if (!excelData.length) {
+        document.getElementById('batch_result').style.display = 'block';
+        document.getElementById('batch_result').innerHTML = '<span class="suggestion">请先上传Excel文件！</span>';
+        return;
+      }
+      const x2 = parseFloat(document.getElementById('all_package').value) || 1;
+      const x3 = parseFloat(document.getElementById('all_coupon').value) || 0;
+      const x4 = parseFloat(document.getElementById('all_delivery').value) || 0;
+      const commission = parseFloat(document.getElementById('all_commission').value) || 20;
+      let table = '<table><tr><th>商品名称</th><th>价格底线</th><th>建议标价</th></tr>';
+      excelData.forEach(row => {
+        const name = row['商品名称'] || row['名称'] || '';
+        const y = parseFloat(row['价格底线']) || 0;
+        if (!name || !y) return;
+        const suggest = (y / (1 - commission / 100)) + x3 + x4 - x2;
+        table += `<tr><td>${name}</td><td>${y}</td><td>${suggest.toFixed(2)}</td></tr>`;
+      });
+      table += '</table>';
+      document.getElementById('batch_result').style.display = 'none';
+      document.getElementById('table_wrap').innerHTML = table;
+    }
+  </script>
+</body>
+</html> 

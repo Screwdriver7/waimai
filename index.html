@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>菜品标价工具</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Roboto', '微软雅黑', Arial, sans-serif;
+      background: linear-gradient(135deg, #fffbe6 0%, #f7f7f7 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 32px 0 0 40px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 10;
+    }
+    .header img {
+      max-width: 150px;
+      max-height: 100px;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(212,175,55,0.10);
+      padding: 6px;
+      border: 1.5px solid #e6d8b6;
+    }
+    .main-menu {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .main-menu h1 {
+      color: #bfa046;
+      font-size: 2.2rem;
+      margin-bottom: 48px;
+      letter-spacing: 2px;
+    }
+    .menu-btn {
+      width: 260px;
+      background: linear-gradient(90deg, #e6d8b6 0%, #bfa046 100%);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 22px 0;
+      font-size: 1.3rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      margin-bottom: 32px;
+      box-shadow: 0 2px 8px rgba(212,175,55,0.08);
+      letter-spacing: 1px;
+    }
+    .menu-btn:last-child {
+      margin-bottom: 0;
+    }
+    .menu-btn:hover {
+      background: linear-gradient(90deg, #bfa046 0%, #e6d8b6 100%);
+      box-shadow: 0 4px 16px rgba(212,175,55,0.13);
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img id="logo-img" src="pic.jpg" alt="logo" />
+  </div>
+  <div class="main-menu">
+    <h1>菜品标价工具</h1>
+    <button class="menu-btn" onclick="location.href='single.html'">单品测算</button>
+    <button class="menu-btn" onclick="location.href='batch.html'">整体建议</button>
+  </div>
+</body>
+</html> 
