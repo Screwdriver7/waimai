@@ -1,0 +1,10 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/single", "destination": "/single.html" },
+    { "source": "/batch", "destination": "/batch.html" }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "static": true
+} 
