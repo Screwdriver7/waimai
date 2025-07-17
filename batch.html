@@ -236,7 +236,7 @@
         document.getElementById('batch_result').innerHTML = '<span class="suggestion">请先上传Excel文件！</span>';
         return;
       }
-      const x2 = parseFloat(document.getElementById('all_package').value) || 1;
+      const x2 = document.getElementById('all_package').value === '' ? 1 : parseFloat(document.getElementById('all_package').value);
       const x3 = parseFloat(document.getElementById('all_coupon').value) || 0;
       const x4 = parseFloat(document.getElementById('all_delivery').value) || 0;
       const commission = parseFloat(document.getElementById('all_commission').value) || 20;
