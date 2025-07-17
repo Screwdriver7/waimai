@@ -196,7 +196,7 @@
     function singleCalc() {
       const x1 = parseFloat(document.getElementById('sp_price').value);
       const y = parseFloat(document.getElementById('sp_base').value);
-      const x2 = parseFloat(document.getElementById('sp_package').value) || 1;
+      const x2 = document.getElementById('sp_package').value === '' ? 1 : parseFloat(document.getElementById('sp_package').value);
       const x3 = parseFloat(document.getElementById('sp_coupon').value) || 0;
       const x4 = parseFloat(document.getElementById('sp_delivery').value) || 0;
       const commission = parseFloat(document.getElementById('sp_commission').value) || 20;
